@@ -2,3 +2,5 @@
 !.gitignore
 !Project.srcs/
 !Project.srcs/**
+!Execution Diagrams/
+!Execution Diagrams/**
