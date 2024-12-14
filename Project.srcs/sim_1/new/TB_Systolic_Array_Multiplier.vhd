@@ -35,13 +35,6 @@ architecture behavior of TB_Systolic_Array_Multiplier is
     
     -- Clock period
     constant clk_period : time := 10 ns;
-    
---    -- Instantiate the Clock generator
---    component Clock
---        Port (
---            clk_out : out std_logic
---        );
---    end component;
 
 begin
     -- Clock generation
