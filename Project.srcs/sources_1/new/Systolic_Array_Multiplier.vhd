@@ -38,35 +38,35 @@ entity Systolic_Array_Multiplier is
         Res23  : out std_logic_vector(5 downto 0);
         Res31  : out std_logic_vector(5 downto 0);
         Res32  : out std_logic_vector(5 downto 0);
-        Res33  : out std_logic_vector(5 downto 0);
+        Res33  : out std_logic_vector(5 downto 0)
         
         -- Outputs to check A matrix values passed among DPUs for testing purpose
         -- Uncomment when running TB_Systolic_Array_Multiplier
-        aIn11  : out std_logic_vector(2 downto 0);
-        aIn12  : out std_logic_vector(2 downto 0);
-        aIn13  : out std_logic_vector(2 downto 0);
-        aIn21  : out std_logic_vector(2 downto 0);
-        aIn22  : out std_logic_vector(2 downto 0);
-        aIn23  : out std_logic_vector(2 downto 0);
-        aIn31  : out std_logic_vector(2 downto 0);
-        aIn32  : out std_logic_vector(2 downto 0);
-        aIn33  : out std_logic_vector(2 downto 0);
+--        aIn11  : out std_logic_vector(2 downto 0);
+--        aIn12  : out std_logic_vector(2 downto 0);
+--        aIn13  : out std_logic_vector(2 downto 0);
+--        aIn21  : out std_logic_vector(2 downto 0);
+--        aIn22  : out std_logic_vector(2 downto 0);
+--        aIn23  : out std_logic_vector(2 downto 0);
+--        aIn31  : out std_logic_vector(2 downto 0);
+--        aIn32  : out std_logic_vector(2 downto 0);
+--        aIn33  : out std_logic_vector(2 downto 0);
         
         -- Outputs to check B matrix values passed among DPUs for testing purpose
         -- Uncomment when running TB_Systolic_Array_Multiplier
-        bIn11  : out std_logic_vector(2 downto 0);
-        bIn12  : out std_logic_vector(2 downto 0);
-        bIn13  : out std_logic_vector(2 downto 0);
-        bIn21  : out std_logic_vector(2 downto 0);
-        bIn22  : out std_logic_vector(2 downto 0);
-        bIn23  : out std_logic_vector(2 downto 0);
-        bIn31  : out std_logic_vector(2 downto 0);
-        bIn32  : out std_logic_vector(2 downto 0);
-        bIn33  : out std_logic_vector(2 downto 0);
+--        bIn11  : out std_logic_vector(2 downto 0);
+--        bIn12  : out std_logic_vector(2 downto 0);
+--        bIn13  : out std_logic_vector(2 downto 0);
+--        bIn21  : out std_logic_vector(2 downto 0);
+--        bIn22  : out std_logic_vector(2 downto 0);
+--        bIn23  : out std_logic_vector(2 downto 0);
+--        bIn31  : out std_logic_vector(2 downto 0);
+--        bIn32  : out std_logic_vector(2 downto 0);
+--        bIn33  : out std_logic_vector(2 downto 0);
         
         -- Outputs to check counter value for testing purpose
         -- Uncomment when running TB_Systolic_Array_Multiplier
-        cout: out std_logic_vector(3 downto 0)
+--        cout: out std_logic_vector(3 downto 0)
     );
 end Systolic_Array_Multiplier;
 
@@ -116,31 +116,31 @@ begin
     
     -- Assign shared matrix with A matrix values to parallel outptus for testing purpose
     -- Uncomment when running TB_Systolic_Array_Multiplier
-    aIn11 <= a_inter(1,1);
-    aIn12 <= a_inter(1,2);
-    aIn13 <= a_inter(1,3);
-    aIn21 <= a_inter(2,1);
-    aIn22 <= a_inter(2,2);
-    aIn23 <= a_inter(2,3);
-    aIn31 <= a_inter(3,1);
-    aIn32 <= a_inter(3,2);
-    aIn33 <= a_inter(3,3);
+--    aIn11 <= a_inter(1,1);
+--    aIn12 <= a_inter(1,2);
+--    aIn13 <= a_inter(1,3);
+--    aIn21 <= a_inter(2,1);
+--    aIn22 <= a_inter(2,2);
+--    aIn23 <= a_inter(2,3);
+--    aIn31 <= a_inter(3,1);
+--    aIn32 <= a_inter(3,2);
+--    aIn33 <= a_inter(3,3);
     
     -- Assign shared matrix with B matrix values to parallel outptus for testing purpose
     -- Uncomment when running TB_Systolic_Array_Multiplier
-    bIn11 <= b_inter(1,1);
-    bIn12 <= b_inter(1,2);
-    bIn13 <= b_inter(1,3);
-    bIn21 <= b_inter(2,1);
-    bIn22 <= b_inter(2,2);
-    bIn23 <= b_inter(2,3);
-    bIn31 <= b_inter(3,1);
-    bIn32 <= b_inter(3,2);
-    bIn33 <= b_inter(3,3);
+--    bIn11 <= b_inter(1,1);
+--    bIn12 <= b_inter(1,2);
+--    bIn13 <= b_inter(1,3);
+--    bIn21 <= b_inter(2,1);
+--    bIn22 <= b_inter(2,2);
+--    bIn23 <= b_inter(2,3);
+--    bIn31 <= b_inter(3,1);
+--    bIn32 <= b_inter(3,2);
+--    bIn33 <= b_inter(3,3);
     
     -- Assign counter value to output for testing purpose
     -- Uncomment when running TB_Systolic_Array_Multiplier
-    cout <= std_logic_vector(to_unsigned(counter,cout'length));
+--    cout <= std_logic_vector(to_unsigned(counter,cout'length));
 
     -- Connect DPUs for the systolic array
     gen_rows: for i in 1 to 3 generate

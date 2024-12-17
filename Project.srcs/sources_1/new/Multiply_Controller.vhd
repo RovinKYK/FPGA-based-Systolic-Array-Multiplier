@@ -74,7 +74,7 @@ architecture Behavioral of Multiply_Controller is
     
 begin  
     -- Instantiate multiplier      
-    multiplier_inst: entity work.Systolic_Array_Multiplier
+    multiplier_inst: entity work.Systolic_Array_Multiplier 
             port map (
                 clk  => clk,
                 rst  => rst,

@@ -2,15 +2,15 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use ieee.numeric_std.ALL;
 
-entity TB_Systolic_Array_Multiplier is
-end TB_Systolic_Array_Multiplier;
+entity TB_Comparison_Methods is
+end TB_Comparison_Methods;
 
-architecture behavior of TB_Systolic_Array_Multiplier is
+architecture behavior of TB_Comparison_Methods is
     -- Clock and reset signals
     signal clk     : std_logic := '0';
     signal rst     : std_logic := '0';
     
-    -- Signals for Systolic Array Multiplier ports
+    -- Signals for Multiplier ports
     signal A11, A12, A13 : std_logic_vector(2 downto 0) := (others => '0');
     signal A21, A22, A23 : std_logic_vector(2 downto 0) := (others => '0');
     signal A31, A32, A33 : std_logic_vector(2 downto 0) := (others => '0');
@@ -19,20 +19,10 @@ architecture behavior of TB_Systolic_Array_Multiplier is
     signal B21, B22, B23 : std_logic_vector(2 downto 0) := (others => '0');
     signal B31, B32, B33 : std_logic_vector(2 downto 0) := (others => '0');
     
-    signal counter: std_logic_vector(3 downto 0);
-    
     signal Res11, Res12, Res13 : std_logic_vector(5 downto 0);
     signal Res21, Res22, Res23 : std_logic_vector(5 downto 0);
     signal Res31, Res32, Res33 : std_logic_vector(5 downto 0);
-    
-    signal aIn11, aIn12, aIn13 : std_logic_vector(2 downto 0);
-    signal aIn21, aIn22, aIn23 : std_logic_vector(2 downto 0);
-    signal aIn31, aIn32, aIn33 : std_logic_vector(2 downto 0);
-        
-    signal bIn11, bIn12, bIn13 : std_logic_vector(2 downto 0);
-    signal bIn21, bIn22, bIn23 : std_logic_vector(2 downto 0);
-    signal bIn31, bIn32, bIn33 : std_logic_vector(2 downto 0);   
-
+   
     -- Clock period
     constant clk_period : time := 10 ns;
 
@@ -40,8 +30,9 @@ begin
     -- Clock generation
     clk_gen: entity work.Clock port map (clk_out => clk);
 
-    -- Instantiate the Systolic Array Multiplier
-    multiplier_inst: entity work.Systolic_Array_Multiplier
+    -- Instantiate the Multiplier
+--      multiplier_inst: entity work.M1_Systolic_Array_Multiplier -- Testing Method 1: Systolic Array Multiplier
+    multiplier_inst: entity work.M2_Normal_Matrix_Multiplier -- Testing Method 2: Normal Matrix Multiplier
         port map (
             clk  => clk,
             rst  => rst,
@@ -77,31 +68,7 @@ begin
             Res23 => Res23,
             Res31 => Res31,
             Res32 => Res32,
-            Res33 => Res33,
-            
-            -- Output matrix with shared A matrix values
-            aIn11  => aIn11,
-            aIn12  => aIn12,
-            aIn13  => aIn13,
-            aIn21  => aIn21,
-            aIn22  => aIn22,
-            aIn23  => aIn23,
-            aIn31  => aIn31,
-            aIn32  => aIn32,
-            aIn33  => aIn33,
-            
-            -- Output matrix with shared B matrix values
-            bIn11  => bIn11,
-            bIn12  => bIn12,
-            bIn13  => bIn13,
-            bIn21  => bIn21,
-            bIn22  => bIn22,
-            bIn23  => bIn23,
-            bIn31  => bIn31,
-            bIn32  => bIn32,
-            bIn33  => bIn33,
-            
-            cout  => counter
+            Res33 => Res33
         );
 
     -- Process for applying inputs on the rising edge
@@ -123,8 +90,8 @@ begin
         B21 <= "011"; B22 <= "001"; B23 <= "010"; -- 3 1 2
         B31 <= "100"; B32 <= "010"; B33 <= "011"; -- 4 2 3
         
-        -- Wait enough time for the systolic array to compute
-        wait for clk_period * 9;
+        -- Wait enough time for the computations
+        wait for clk_period * 2;
         
         -- Apply null matrices and test reset
         A11<= (others => '0'); A12<= (others => '0'); A13 <= (others => '0');
@@ -148,7 +115,7 @@ begin
         wait for clk_period * 2;
         
         -- Wait until computations are complete
-        wait for clk_period * 8;
+        wait for clk_period;
 
         -- Check the matrix multiplication result set 1
         assert (Res11 = "010100") report "Res11 for test matrix set 1 is incorrect!" severity error;
