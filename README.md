@@ -2,13 +2,23 @@
 
 This project explores the implementation of matrix multiplication using a systolic array architecture on an FPGA. It provides two designs that demonstrate different approaches to achieve efficient and scalable matrix multiplication.
 
+<p align="center">
+  <img src="./Execution%20Diagrams/Analysis%20and%20Comparisons/concept.png" />
+</p>
+
 ## Designs
 
 - [**Design-01**: Initial Prototype Implementation](./Design-01)  
   This prototype focuses on implementing 3x3 matrix multiplication using both systolic array and standard methods. It includes a display controller for results visualization and test benches for verification.
+  <p align="center">
+  <img src="./Execution%20Diagrams/Analysis%20and%20Comparisons/RTL_Sys.png" />
+</p>
 
 - [**Design-02**: Complete Accelerator with UART Interface](./Design-02)  
   This enhanced design builds upon the prototype and incorporates a UART interface for communication, buffered data handling, and 8-bit precision inputs. It is fully pipelined for high efficiency and includes automated test benches.
+  <p align="center">
+  <img src="./Execution%20Diagrams/Analysis%20and%20Comparisons/interface.png" />
+</p>
 
 ## Project Report
 
